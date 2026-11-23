@@ -1,0 +1,36 @@
+digraph ER {
+  graph [rankdir=LR, fontname="Helvetica", fontsize=11, nodesep=0.35, ranksep=0.7, bgcolor="white"];
+  node [shape=plain, fontname="Helvetica", fontsize=9];
+  edge [fontname="Helvetica", fontsize=8, color="#555555", arrowhead=crow, arrowtail=tee, dir=both];
+  Categoria [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Categoria</b></font></td></tr><tr><td align="left">PK id_categoria</td></tr><tr><td align="left">nombre_categoria</td></tr></table>>];
+  Producto [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Producto</b></font></td></tr><tr><td align="left">PK id_producto</td></tr><tr><td align="left">nombre_producto</td></tr><tr><td align="left">pVenta_producto  CK &gt;= pCompra</td></tr><tr><td align="left">pCompra_producto</td></tr><tr><td align="left">FK id_categoria</td></tr></table>>];
+  Inventario [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Inventario</b></font></td></tr><tr><td align="left">PK id_inventario</td></tr><tr><td align="left">stock_actual  CK &gt;= 0</td></tr><tr><td align="left">stock_minimo / stock_maximo</td></tr><tr><td align="left">fecha_inventario</td></tr><tr><td align="left">FK UQ id_producto</td></tr></table>>];
+  Cliente [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Cliente</b></font></td></tr><tr><td align="left">PK id_cliente</td></tr><tr><td align="left">nombre / ape_pat / ape_mat</td></tr><tr><td align="left">celular_cliente  (DDM)</td></tr></table>>];
+  Empleado [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Empleado</b></font></td></tr><tr><td align="left">PK id_empleado</td></tr><tr><td align="left">nombres y apellidos</td></tr><tr><td align="left">turno  CK Mañana/Noche</td></tr><tr><td align="left">sueldo (DDM) · dni UQ (DDM)</td></tr><tr><td align="left">celular (DDM) · cargo</td></tr></table>>];
+  MetodoPago [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>MetodoPago</b></font></td></tr><tr><td align="left">PK id_metodoPago</td></tr><tr><td align="left">tipo_metodoPago</td></tr></table>>];
+  Venta [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Venta</b></font></td></tr><tr><td align="left">PK id_venta</td></tr><tr><td align="left">monto_venta · fecha_venta</td></tr><tr><td align="left">FK id_cliente · id_metodoPago · id_empleado</td></tr><tr><td align="left" bgcolor="#e9f5db">estado_venta (nuevo)</td></tr></table>>];
+  DetalleVenta [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>DetalleVenta</b></font></td></tr><tr><td align="left">PK id_detalleVenta</td></tr><tr><td align="left">cantidad  CK &gt; 0</td></tr><tr><td align="left">precio_unit  CK &gt; 0</td></tr><tr><td align="left">FK id_venta · id_producto</td></tr></table>>];
+  Proveedor [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Proveedor</b></font></td></tr><tr><td align="left">PK id_proveedor</td></tr><tr><td align="left">nombre · celular</td></tr><tr><td align="left">correo UQ</td></tr></table>>];
+  Pedido [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>Pedido</b></font></td></tr><tr><td align="left">PK id_pedido</td></tr><tr><td align="left">monto · fecha</td></tr><tr><td align="left">FK id_proveedor</td></tr></table>>];
+  DetallePedido [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#1d3557"><font color="white"><b>DetallePedido</b></font></td></tr><tr><td align="left">PK id_detallePedido</td></tr><tr><td align="left">cantidad · precio_unit</td></tr><tr><td align="left">FK id_pedido · id_producto</td></tr></table>>];
+  Mov [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#2a9d8f"><font color="white"><b>MovimientoInventario</b></font></td></tr><tr><td align="left">PK id_movimiento</td></tr><tr><td align="left">tipo CK INGRESO/SALIDA/AJUSTE</td></tr><tr><td align="left">cantidad · stock_resultante</td></tr><tr><td align="left">referencia · fecha · usuario</td></tr><tr><td align="left">FK id_producto</td></tr></table>>];
+  Alerta [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#2a9d8f"><font color="white"><b>AlertaStock</b></font></td></tr><tr><td align="left">PK id_alerta</td></tr><tr><td align="left">stock_actual · stock_minimo</td></tr><tr><td align="left">estado CK PENDIENTE/ATENDIDA</td></tr><tr><td align="left">FK id_producto</td></tr></table>>];
+  Restr [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#2a9d8f"><font color="white"><b>RestriccionVenta</b></font></td></tr><tr><td align="left">PK id_restriccion</td></tr><tr><td align="left">fecha_inicio · fecha_fin</td></tr><tr><td align="left">motivo (ley seca)</td></tr></table>>];
+  Aud [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#e76f51"><font color="white"><b>auditoria.RegistroAuditoria</b></font></td></tr><tr><td align="left">PK id_auditoria</td></tr><tr><td align="left">tabla · operacion · clave</td></tr><tr><td align="left">datos_anteriores / nuevos (JSON)</td></tr><tr><td align="left">usuario · host · fecha_hora</td></tr></table>>];
+  Err [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3"><tr><td bgcolor="#e76f51"><font color="white"><b>auditoria.LogErrores</b></font></td></tr><tr><td align="left">PK id_error</td></tr><tr><td align="left">procedimiento · número · mensaje</td></tr><tr><td align="left">línea · usuario · fecha_hora</td></tr></table>>];
+  Categoria -> Producto [label="1:N"];
+  Producto -> Inventario [label="1:1", arrowhead=tee];
+  Producto -> DetalleVenta [label="1:N"];
+  Producto -> DetallePedido [label="1:N"];
+  Venta -> DetalleVenta [label="1:N"];
+  Cliente -> Venta [label="1:N"];
+  Empleado -> Venta [label="1:N"];
+  MetodoPago -> Venta [label="1:N"];
+  Proveedor -> Pedido [label="1:N"];
+  Pedido -> DetallePedido [label="1:N"];
+  Producto -> Mov [label="1:N"];
+  Producto -> Alerta [label="1:N"];
+  Aud -> Err [style=invis];
+  Restr -> Aud [style=invis];
+  {rank=same; Restr; Aud; Err}
+}

@@ -1,0 +1,22 @@
+-- Crear estas medidas en una tabla llamada _Medidas
+Ventas = SUM ( FactVentas[Importe] )
+Margen = SUM ( FactVentas[Margen] )
+Margen % = DIVIDE ( [Margen], [Ventas] )
+Tickets = DISTINCTCOUNT ( FactVentas[NroVenta] )
+Ticket Promedio = DIVIDE ( [Ventas], [Tickets] )
+Unidades = SUM ( FactVentas[Cantidad] )
+Ventas Año Anterior =
+    CALCULATE ( [Ventas], SAMEPERIODLASTYEAR ( DimTiempo[Fecha] ) )
+Crecimiento Interanual % =
+    DIVIDE ( [Ventas] - [Ventas Año Anterior], [Ventas Año Anterior] )
+% Pagos Digitales =
+    DIVIDE (
+        CALCULATE ( [Tickets], DimMetodoPago[EsDigital] = "SI" ),
+        [Tickets]
+    )
+Ventas Fin de Semana % =
+    DIVIDE (
+        CALCULATE ( [Ventas], DimTiempo[EsFinDeSemana] = 1 ),
+        [Ventas]
+    )
+Meta Margen % = 0.22

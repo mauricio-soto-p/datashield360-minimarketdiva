@@ -1,0 +1,28 @@
+digraph A {
+  graph [rankdir=LR, fontname="Helvetica", fontsize=10, nodesep=0.25, ranksep=0.45, compound=true, bgcolor="white"];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=9, fillcolor="#f1f3f5", color="#868e96"];
+  edge [fontname="Helvetica", fontsize=7.5, color="#495057"];
+  subgraph cluster_f { label="FUENTES"; style="rounded,dashed"; color="#adb5bd"; fontsize=9;
+    pos [label="Caja / POS\n(usp_RegistrarVenta)"]; wsp [label="Pedidos delivery\nWhatsApp / Facebook\n(JSON)"]; exp [label="Export diario POS\nventas_pos_raw.csv"]; }
+  subgraph cluster_o { label="OPERACIONAL - SQL Server 2022"; style="rounded"; color="#1d3557"; fontsize=9;
+    oltp [label="MinimarketDiva (OLTP)\n16 tablas · 3FN\nSP · triggers · cursores\nroles · DDM · auditoría", fillcolor="#dbe4ff"];
+    bk [label="Respaldo FULL / DIFF / LOG\nRPO 15 min · RTO 1 h", fillcolor="#dbe4ff"]; }
+  subgraph cluster_n { label="NoSQL - MongoDB 7"; style="rounded"; color="#2b8a3e"; fontsize=9;
+    mg [label="minimarketdiva_nosql\npedidos_delivery\n($jsonSchema, índices)", fillcolor="#d3f9d8"]; }
+  subgraph cluster_bi { label="SOLUCIÓN BI"; style="rounded"; color="#c1121f"; fontsize=9;
+    etl [label="ETL T-SQL automatizado\netl.usp_EjecutarETL\n(job 05:30, incremental)", fillcolor="#ffe3e3"];
+    dw [label="MinimarketDiva_DW\nestrella: 1 hecho + 6 dim.\ncolumnstore", fillcolor="#ffe3e3"];
+    pbi [label="Power BI Desktop\nKPI · OLAP · tendencias", fillcolor="#ffe3e3"]; }
+  subgraph cluster_bd { label="SOLUCIÓN BIG DATA"; style="rounded"; color="#e8590c"; fontsize=9;
+    ing [label="Ingesta batch\nesquema explícito", fillcolor="#fff4e6"];
+    sp [label="Apache Spark 4 (PySpark)\nDataFrames · SparkSQL · RDD\nlimpieza Q1-Q6", fillcolor="#fff4e6"];
+    lk [label="Data lake local\nParquet anio/mes", fillcolor="#fff4e6"];
+    an [label="Analítica R1-R6\nEXP-02 / EXP-03", fillcolor="#fff4e6"]; }
+  usr [label="Gerencia / Administrador\nSupervisor de noche", shape=ellipse, fillcolor="#fff3bf"];
+  pos -> oltp [label="ventas"]; oltp -> bk [style=dashed];
+  wsp -> mg [label="insert"]; mg -> oltp [label="id_venta\nid_cliente", style=dotted, dir=both];
+  oltp -> etl [label="extracción\nincremental"]; etl -> dw [label="carga"]; dw -> pbi [label="import"];
+  exp -> ing; ing -> sp; sp -> lk; lk -> an;
+  an -> pbi [label="powerbi_resumen\n_spark.csv", color="#e8590c"];
+  pbi -> usr; an -> usr [style=dashed];
+}

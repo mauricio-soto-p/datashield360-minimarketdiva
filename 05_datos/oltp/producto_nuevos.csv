@@ -1,0 +1,32 @@
+id_producto,nombre_producto,pVenta_producto,pCompra_producto,id_categoria
+15,Cusqueña Dorada 620 ml,9.50,7.00,1
+16,Corona 355 ml,7.50,5.40,1
+17,Pilsen Callao lata 355 ml x6,26.00,20.00,1
+18,Cristal lata 355 ml x6,24.00,18.50,1
+19,Cusqueña Negra 620 ml,9.80,7.20,1
+20,Ron Pomalca Superior,29.00,22.00,2
+21,Ron Flor de Caña 4 años,52.00,41.00,2
+22,Ron Havana Club Añejo,65.00,52.00,2
+23,Pisco Portón Mosto Verde,89.00,70.00,3
+24,Pisco 4 Gallos Quebranta,36.00,28.00,3
+25,Pisco Intipalka Acholado,48.00,38.00,3
+26,Chivas Regal 12 años,165.00,135.00,4
+27,Johnnie Walker Black,175.00,142.00,4
+28,Old Parr 12 años,155.00,126.00,4
+29,Inca Kola 3 L,12.50,9.80,5
+30,Sprite 3 L,11.00,8.40,5
+31,Agua tónica 1.5 L,6.50,4.60,5
+32,Agua San Luis 2.5 L,4.50,3.00,5
+33,Vino Santiago Queirolo Borgoña,25.00,19.00,6
+34,Vino Intipalka Malbec,42.00,33.00,6
+35,Vino Casillero del Diablo Cabernet,49.00,38.50,6
+36,Espumante Tabernero Brut,39.00,30.00,7
+37,Champán Riccadonna Ruby,78.00,62.00,7
+38,Freixenet Carta Nevada,85.00,68.00,7
+39,Hielo en cubos 3 kg,5.00,3.20,8
+40,Hamilton Blue x20,18.00,14.00,9
+41,Marlboro Rojo x20,24.00,19.00,9
+42,Cerveza Pilsen 1 L retornable,10.50,7.80,1
+43,Vino Tacama Gran Tinto,32.00,25.00,6
+44,Ron Cartavio Superior 1 L,34.00,26.00,2
+45,Agua San Mateo 600 ml,2.50,1.60,5

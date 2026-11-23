@@ -1,0 +1,6 @@
+SK_MetodoPago,IdMetodoPago,MetodoPago,EsDigital
+1,1,EFECTIVO,NO
+2,2,TARJETA,SI
+3,3,YAPE,SI
+4,4,PLIN,SI
+5,5,TRANSFERENCIA,SI

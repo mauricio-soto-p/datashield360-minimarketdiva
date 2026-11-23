@@ -1,0 +1,7 @@
+FactVentas: 148959 filas; primera columna IdDetalle; claves únicas=True
+DimTiempo: 1096 filas; primera columna SK_Tiempo; claves únicas=True
+DimHora: 24 filas; primera columna SK_Hora; claves únicas=True
+DimProducto: 45 filas; primera columna SK_Producto; claves únicas=True
+DimCliente: 600 filas; primera columna SK_Cliente; claves únicas=True
+DimEmpleado: 6 filas; primera columna SK_Empleado; claves únicas=True
+DimMetodoPago: 5 filas; primera columna SK_MetodoPago; claves únicas=True

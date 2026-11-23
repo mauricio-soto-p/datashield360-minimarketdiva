@@ -1,0 +1,6 @@
+pyspark>=4.0
+pandas>=2.2
+pyarrow>=15
+matplotlib>=3.8
+psutil>=5.9
+jupyter

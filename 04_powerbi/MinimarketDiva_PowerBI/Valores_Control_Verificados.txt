@@ -1,0 +1,9 @@
+Valores recalculados directamente desde FactVentas.csv:
+Filas: 148959
+Ventas: S/ 4,880,319.40
+Margen: S/ 1,167,325.69
+Unidades: 341042
+Tickets distintos: 74110
+Ticket promedio: S/ 65.85
+Margen %: 23.92%
+Rango de claves de fecha: 20240101 a 20261031 (01/01/2024 a 31/10/2026)
