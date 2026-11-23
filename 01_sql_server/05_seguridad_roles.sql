@@ -11,6 +11,10 @@
    ===================================================================== */
 USE master;
 GO
+
+-- CREDENCIALES DE LABORATORIO:
+-- Valores ficticios para fines académicos.
+-- No utilizar en entornos de producción.
 IF SUSER_ID(N'lg_admin_diva')   IS NULL CREATE LOGIN lg_admin_diva   WITH PASSWORD = N'Adm!nDiva2026#', CHECK_POLICY = ON, CHECK_EXPIRATION = ON, DEFAULT_DATABASE = MinimarketDiva;
 IF SUSER_ID(N'lg_cajero_diva')  IS NULL CREATE LOGIN lg_cajero_diva  WITH PASSWORD = N'CajeroDiva2026#', CHECK_POLICY = ON, CHECK_EXPIRATION = ON, DEFAULT_DATABASE = MinimarketDiva;
 IF SUSER_ID(N'lg_analista_bi')  IS NULL CREATE LOGIN lg_analista_bi  WITH PASSWORD = N'Anal1staBI2026#', CHECK_POLICY = ON, CHECK_EXPIRATION = ON, DEFAULT_DATABASE = MinimarketDiva;
@@ -19,6 +23,7 @@ GO
 
 USE MinimarketDiva;
 GO
+   
 /* ---------- Vista analítica sin datos personales (para el analista) ---------- */
 CREATE OR ALTER VIEW dbo.vw_VentasAnaliticas
 AS
